@@ -1,0 +1,9 @@
+
+<div *ngIf="point">
+  <h1>{{ point.title }}</h1>
+  <p>{{ point.description }}</p>
+  <p>{{ point.date | date:"d/mm/YYYY"  }} </p>
+  <img *ngIf="point.background" [src]="point.background" alt="Background image">
+  <a *ngIf="point.presentation" [href]="point.presentation" target="_blank">View Presentation</a>
+</div>
+<button (click)="closeDetail()">X</button>

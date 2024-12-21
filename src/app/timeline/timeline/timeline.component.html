@@ -1,0 +1,22 @@
+<div *ngIf="!selectedPoint">
+  <h1>{{ timelineViewModel.timeline.title }}</h1>
+  <ul>
+    <li *ngFor="let point of timelineViewModel.timeline.points">
+      <h2><a (click)="selectPoint(point.id)">{{ point.title }}</a></h2>
+      <!-- <h2><a [routerLink]="['/point', point.id]">{{ point.title }}</a></h2> -->
+      <p>{{ point.description }}</p>
+      <p>{{ point.date | date:'dd-MM-Y' }}</p>
+      <img *ngIf="point.background" [src]="point.background" alt="Background image">
+      <a *ngIf="point.presentation" [href]="point.presentation" target="_blank">View Presentation</a>
+      <button (click)="removePoint(point.id)">Remove</button>
+    </li>
+  </ul>
+  <button (click)="addPoint()">Add Point</button>
+</div>
+<router-outlet *ngIf="selectedPoint" (close)="closeDetail()"></router-outlet>
+
+<!-- 
+<div *ngIf="selectedPoint">
+  <app-timeline-point-detail  (close)="onCloseDetail()"></app-timeline-point-detail>
+</div>
+<app-timeline-point-detail *ngIf="selectedPoint" (close)="closeDetail()"></app-timeline-point-detail> -->
